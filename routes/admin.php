@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminAuthencationController;
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::controller(AdminAuthencationController::class)->group(function () {
@@ -11,9 +12,11 @@ Route::controller(AdminAuthencationController::class)->group(function () {
     Route::post('forgot-password', 'forgotPasswordHandle')->name('forgot-password.handle');
     Route::get('reset-password/{token}', 'resetPassword')->name('reset-password');
     Route::post('reset-password', 'resetPasswordHandle')->name('reset-password.handle');
+    Route::post('logout', 'destroy')->name('logout');
 });
 
 
-Route::middleware('admin')->controller(AdminDashboardController::class)->group(function () {
-    Route::get('/dashboard','index')->name('dashboard');
+Route::group(['middleware' => 'admin'],function () {
+    Route::get('/dashboard',[AdminDashboardController::class,'index'])->name('dashboard');
+    Route::resource('profile', ProfileController::class);
 });

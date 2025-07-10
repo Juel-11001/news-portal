@@ -63,12 +63,16 @@
   <script src="{{asset('admin/assets/modules/jqvmap/dist/maps/jquery.vmap.world.js')}}"></script>
   <script src="{{asset('admin/assets/modules/summernote/summernote-bs4.js')}}"></script>
   <script src="{{asset('admin/assets/modules/chocolat/dist/js/jquery.chocolat.min.js')}}"></script>
+   <script src="assets/modules/upload-preview/assets/js/jquery.uploadPreview.min.js"></script>
 
   <!-- Page Specific JS File -->
   <script src="{{asset('admin/assets/js/page/index-0.js')}}"></script>
+    <!-- Page Specific preview image upload JS File -->
+  {{-- <script src="{{asset('admin/assets/js/page/features-post-create.js')}}"></script> --}}
   
   <!-- Template JS File -->
   <script src="{{asset('admin/assets/js/scripts.js')}}"></script>
   <script src="{{asset('admin/assets/js/custom.js')}}"></script>
+  @stack('scripts')
 </body>
 </html>

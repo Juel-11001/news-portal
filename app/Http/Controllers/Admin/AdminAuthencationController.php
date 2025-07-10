@@ -4,12 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminRestPasswordRequest;
-use App\Http\Requests\HandleLogin;
 use App\Http\Requests\HandleLoginRequest;
 use App\Http\Requests\SendResetLinkRequest;
 use App\Mail\AdminSendResetLinkMail;
 use App\Models\Admin;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class AdminAuthencationController extends Controller
@@ -51,5 +52,13 @@ class AdminAuthencationController extends Controller
         $admin->password=bcrypt($request->password);
         $admin->save();
         return redirect()->route('admin.login')->with('success', 'Password reset successfully');
+    }
+    public function destroy(Request $request): RedirectResponse
+    {
+        // dd('working');
+        Auth::guard('admin')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('admin.login');
     }
 }

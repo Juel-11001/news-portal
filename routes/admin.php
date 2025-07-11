@@ -18,5 +18,6 @@ Route::controller(AdminAuthencationController::class)->group(function () {
 
 Route::group(['middleware' => 'admin'],function () {
     Route::get('/dashboard',[AdminDashboardController::class,'index'])->name('dashboard');
+    Route::put('profile-password-update/{id}', [ProfileController::class, 'updatePassword'])->name('profile.password.update');
     Route::resource('profile', ProfileController::class);
 });

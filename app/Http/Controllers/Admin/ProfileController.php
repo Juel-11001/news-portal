@@ -4,9 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminProfileUpdateRequest;
+use App\Http\Requests\ProfilePasswordUpdateRequest;
 use App\Models\Admin;
 use App\Traits\FileUploadTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class ProfileController extends Controller
 {
@@ -74,5 +78,13 @@ class ProfileController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function updatePassword(ProfilePasswordUpdateRequest $request, string $id)
+    {
+        $admin=Admin::findOrFail($id);
+        $admin->password=bcrypt($request->password);
+        $admin->save();
+        return redirect()->back()->with('success', 'Password updated successfully');
     }
 }

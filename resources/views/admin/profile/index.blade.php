@@ -72,7 +72,9 @@
                 </div>
                 <div class="col-12 col-md-12 col-lg-6">
                     <div class="card">
-                        <form method="post" class="needs-validation" novalidate="">
+                        <form method="post" action="{{route('admin.profile.password.update', $user->id)}}" class="needs-validation" novalidate="">
+                            @csrf
+                            @method('put')
                             <div class="card-header">
                                 <h4>{{ __('Change Password') }}</h4>
                             </div>
@@ -84,6 +86,9 @@
                                         <div class="invalid-feedback">
                                             {{ __('Please fill in the old password') }}
                                         </div>
+                                        @error('old_password')
+                                            <p><b class="text-danger">{{ $message }}</b></p>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="row">
@@ -93,6 +98,9 @@
                                         <div class="invalid-feedback">
                                             {{ __('Please fill in the new password') }}
                                         </div>
+                                        @error('password')
+                                                <p><b class="text-danger">{{ $message }}</b></p>
+                                            @enderror
                                     </div>
                                 </div>
                                 <div class="row">
@@ -103,6 +111,9 @@
                                         <div class="invalid-feedback">
                                             {{ __('Please fill in the confirm password') }}
                                         </div>
+                                        @error('password_confirmation')
+                                            <p><b class="text-danger">{{ $message }}</b></p>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>

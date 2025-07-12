@@ -73,6 +73,8 @@
   <!-- Template JS File -->
   <script src="{{asset('admin/assets/js/scripts.js')}}"></script>
   <script src="{{asset('admin/assets/js/custom.js')}}"></script>
+  {{-- sweet alert --}}
+  @include('sweetalert::alert')
   @stack('scripts')
 </body>
 </html>

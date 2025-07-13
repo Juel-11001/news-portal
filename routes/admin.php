@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminAuthencationController;
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\LanugageController;
 use App\Http\Controllers\Admin\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,10 @@ Route::controller(AdminAuthencationController::class)->group(function () {
 
 Route::group(['middleware' => 'admin'],function () {
     Route::get('/dashboard',[AdminDashboardController::class,'index'])->name('dashboard');
+    /** profile routes */
     Route::put('profile-password-update/{id}', [ProfileController::class, 'updatePassword'])->name('profile.password.update');
     Route::resource('profile', ProfileController::class);
+
+    /** language routes */
+    Route::resource('language', LanugageController::class);
 });

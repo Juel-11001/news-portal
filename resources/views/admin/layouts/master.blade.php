@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>@yield('title')</title>
 
   <!-- General CSS Files -->
@@ -14,10 +15,12 @@
   <link rel="stylesheet" href="{{asset('admin/assets/modules/weather-icon/css/weather-icons.min.css')}}">
   <link rel="stylesheet" href="{{asset('admin/assets/modules/weather-icon/css/weather-icons-wind.min.css')}}">
   <link rel="stylesheet" href="{{asset('admin/assets/modules/summernote/summernote-bs4.css')}}">
-
-  <!-- Template CSS -->
-  <link rel="stylesheet" href="{{asset('admin/assets/css/style.css')}}">
-  <link rel="stylesheet" href="{{asset('admin/assets/css/components.css')}}">
+   <link rel="stylesheet" href="{{asset('admin/assets/modules/select2/dist/css/select2.min.css')}}">
+   
+   <!-- Template CSS -->
+   <link rel="stylesheet" href="{{asset('admin/assets/css/style.css')}}">
+   <link rel="stylesheet" href="{{asset('admin/assets/css/components.css')}}">
+   <link rel="stylesheet" href="{{asset('admin/assets/css/custom.css')}}">
 <!-- Start GA -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
 <script>
@@ -63,7 +66,8 @@
   <script src="{{asset('admin/assets/modules/jqvmap/dist/maps/jquery.vmap.world.js')}}"></script>
   <script src="{{asset('admin/assets/modules/summernote/summernote-bs4.js')}}"></script>
   <script src="{{asset('admin/assets/modules/chocolat/dist/js/jquery.chocolat.min.js')}}"></script>
-   <script src="assets/modules/upload-preview/assets/js/jquery.uploadPreview.min.js"></script>
+   <script src="{{asset('admin/assets/modules/upload-preview/assets/js/jquery.uploadPreview.min.js')}}"></script>
+   <script src="{{asset('admin/assets/modules/select2/dist/js/select2.full.min.js')}}"></script>
 
   <!-- Page Specific JS File -->
   <script src="{{asset('admin/assets/js/page/index-0.js')}}"></script>
@@ -75,6 +79,61 @@
   <script src="{{asset('admin/assets/js/custom.js')}}"></script>
   {{-- sweet alert --}}
   @include('sweetalert::alert')
+    <!-- Sweet Alert Js -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <script>
+    $(document).ready(function(){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $('body').on('click', '.delete-item', function(event){
+            event.preventDefault();
+
+            let deletUrl = $(this).attr('href');
+
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: 'DELETE',
+                        url: deletUrl,
+                        success: function(data){
+                            if(data.status == 'success'){
+                                Swal.fire(
+                                    'Deleted',
+                                    data.message,
+                                    'success'
+                                ).then(() => {
+                                    window.location.reload();
+                                });
+                            } else if(data.status == 'error'){
+                                Swal.fire(
+                                    "Can't Delete!",
+                                    data.message,
+                                    'error'
+                                );
+                            }
+                        },
+                        error: function(xhr, status, error){
+                            console.log(error);
+                        }
+                    });
+                }
+            });
+        });
+    });
+    </script>
   @stack('scripts')
 </body>
 </html>

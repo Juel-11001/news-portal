@@ -6,3 +6,8 @@
  */
 
 /*# sourceMappingURL=custom.css.map */
+ .swal2-container .swal2-confirm:focus,
+    .swal2-container .swal2-cancel:focus {
+        box-shadow: none !important;
+        outline: none !important;
+    }

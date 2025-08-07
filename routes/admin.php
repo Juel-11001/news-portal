@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminAuthencationController;
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\LanugageController;
 use App\Http\Controllers\Admin\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -25,4 +26,7 @@ Route::group(['middleware' => 'admin'],function () {
 
     /** language routes */
     Route::resource('language', LanugageController::class);
+
+    /** category routes */
+    Route::resource('category', CategoryController::class);
 });

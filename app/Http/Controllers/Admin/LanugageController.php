@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminLanguageCreateRequest;
 use App\Http\Requests\AdminLanguageUpdateRequest;
+use App\Models\Category;
 use App\Models\Language;
 use Illuminate\Http\Request;
 
@@ -85,8 +86,12 @@ class LanugageController extends Controller
     {
         try {
             $lang=Language::find($id);
+            $category=Category::where('language', $lang->lang)->count();
             if($lang->lang=='en'){
                 return response(['status'=>'error', 'message'=> 'Default language can not be deleted']);
+            }
+            if($category>0){
+                return response(['status'=>'error', 'message'=> 'Language has categories']);
             }
             $lang->delete();
             return response(['status'=>'success', 'message'=> 'Language deleted successfully']);

@@ -16,7 +16,9 @@
   <link rel="stylesheet" href="{{asset('admin/assets/modules/weather-icon/css/weather-icons-wind.min.css')}}">
   <link rel="stylesheet" href="{{asset('admin/assets/modules/summernote/summernote-bs4.css')}}">
    <link rel="stylesheet" href="{{asset('admin/assets/modules/select2/dist/css/select2.min.css')}}">
-   
+   <!-- dataTables -->
+     <link rel="stylesheet" href="{{asset('admin/assets/modules/datatables/datatables.min.css')}}">
+  <link rel="stylesheet" href="{{asset('admin/assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css')}}">   
    <!-- Template CSS -->
    <link rel="stylesheet" href="{{asset('admin/assets/css/style.css')}}">
    <link rel="stylesheet" href="{{asset('admin/assets/css/components.css')}}">
@@ -69,10 +71,18 @@
    <script src="{{asset('admin/assets/modules/upload-preview/assets/js/jquery.uploadPreview.min.js')}}"></script>
    <script src="{{asset('admin/assets/modules/select2/dist/js/select2.full.min.js')}}"></script>
 
+  <!-- datatables js -->
+      <script src="{{asset('admin/assets/modules/datatables/datatables.min.js')}}"></script>
+  <script src="{{asset('admin/assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js')}}"></script>
+
   <!-- Page Specific JS File -->
   <script src="{{asset('admin/assets/js/page/index-0.js')}}"></script>
     <!-- Page Specific preview image upload JS File -->
   {{-- <script src="{{asset('admin/assets/js/page/features-post-create.js')}}"></script> --}}
+
+
+ <!-- Page Specific JS File -->
+  <script src="{{asset('admin/assets/js/page/modules-datatables.js')}}"></script>
   
   <!-- Template JS File -->
   <script src="{{asset('admin/assets/js/scripts.js')}}"></script>

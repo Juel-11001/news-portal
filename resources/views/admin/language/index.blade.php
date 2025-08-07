@@ -21,7 +21,7 @@
                 </div>
                 <div class="card-body">
                      <div class="table-responsive">
-                      <table class="table table-bordered table-md">
+                      <table class="table table-striped" id="table-2">
                         <tbody><tr>
                           <th>{{__('#')}}</th>
                           <th>{{__('Name')}}</th>
@@ -35,7 +35,7 @@
                           <td>{{$lang->name}}</td>
                           <td>
                             @if ($lang->status == 1)
-                            <div class="badge badge-success">{{_('Active')}}</div>
+                            <div class="badge badge-primary">{{_('Active')}}</div>
                             @else
                             <div class="badge badge-danger">{{_('Inactive')}}</div>
                             @endif
@@ -48,8 +48,6 @@
                             <div class="badge badge-danger">{{_('No')}}</div>
                             @endif
                           </td>
-
-                          
                           <td>
                             <a href="{{route('admin.language.edit', $lang->id)}}" class="btn btn-primary"><i class='far fa-edit'></i></a>
                             <a href="{{route('admin.language.destroy', $lang->id)}}" class="btn btn-danger delete-item"><i class='fas fa-trash'></i></a>
@@ -64,3 +62,13 @@
     </div>
 </div>
 @endsection
+@push('scripts')
+  <script>
+    $("#table-1").dataTable({
+     "columnDefs": [
+       { "sortable": false, 
+       "targets": [2,3] }
+       ]
+     });
+  </script>
+@endpush

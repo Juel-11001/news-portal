@@ -24,4 +24,12 @@ trait FileUploadTrait {
        return $filePath;
 
     }
+    //handle delte image file 
+    public function deleteFile(string $path)
+    {
+          //delete  image
+        if($path && file_exists(public_path(($path)))) {
+             unlink($path);
+        }
+    }
 }

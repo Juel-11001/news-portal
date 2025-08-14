@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminAuthencationController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\LanugageController;
+use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,4 +30,11 @@ Route::group(['middleware' => 'admin'],function () {
 
     /** category routes */
     Route::resource('category', CategoryController::class);
+
+    /** news routes */
+    Route::get('/get-categories', [NewsController::class, 'getCategories'])->name('get-categories');
+    Route::get('/change-news-status', [NewsController::class, 'changeStatus'])->name('change-news-status');
+    Route::get('news-copy/{id}', [NewsController::class, 'copyNews'])->name('news-copy');
+
+    Route::resource('news', NewsController::class);
 });

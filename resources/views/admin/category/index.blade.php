@@ -87,6 +87,7 @@
   <script>
     @foreach ($languages as $lang)  
     $("#table-{{$lang->lang}}").dataTable({
+      order": [[0, "desc"]],
      "columnDefs": [
        { "sortable": false, 
        "targets": [2,3] }

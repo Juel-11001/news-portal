@@ -21,31 +21,34 @@
                 </div>
                 <div class="card-body">
                      <div class="table-responsive">
-                      <table class="table table-striped" id="table-2">
-                        <tbody><tr>
-                          <th>{{__('#')}}</th>
-                          <th>{{__('Name')}}</th>
-                          <th>{{__('Status')}}</th>
-                          <th>{{__('Default')}}</th>
-                          <th>{{__('Action')}}</th>
-                        </tr>
+                      <table class="table table-striped dataTable" id="table-language">
+                        <thead>
+                          <tr>
+                            <th>{{__('#')}}</th>
+                            <th>{{__('Name')}}</th>
+                            <th>{{__('Status')}}</th>
+                            <th>{{__('Default')}}</th>
+                            <th>{{__('Action')}}</th>
+                          </tr>
+                        </thead>
+                        <tbody>
                         @foreach ($languages as $lang)
                         <tr>
                           <td>{{$lang->id}}</td>
                           <td>{{$lang->name}}</td>
                           <td>
                             @if ($lang->status == 1)
-                            <div class="badge badge-primary">{{_('Active')}}</div>
+                            <div class="badge badge-primary">{{__('Active')}}</div>
                             @else
-                            <div class="badge badge-danger">{{_('Inactive')}}</div>
+                            <div class="badge badge-danger">{{__('Inactive')}}</div>
                             @endif
                           </td>
 
                           <td>
                             @if ($lang->default == 1)
-                            <div class="badge badge-success">{{_('Yes')}}</div>
+                            <div class="badge badge-success">{{__('Yes')}}</div>
                             @else
-                            <div class="badge badge-danger">{{_('No')}}</div>
+                            <div class="badge badge-danger">{{__('No')}}</div>
                             @endif
                           </td>
                           <td>
@@ -64,7 +67,7 @@
 @endsection
 @push('scripts')
   <script>
-    $("#table-1").dataTable({
+    $("#table-language").dataTable({
      "columnDefs": [
        { "sortable": false, 
        "targets": [2,3] }

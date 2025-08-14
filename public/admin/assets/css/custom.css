@@ -11,3 +11,14 @@
         box-shadow: none !important;
         outline: none !important;
     }
+/* custome css */
+/* Prevent button wrapping in any language */
+/* .table td .btn {
+    white-space: nowrap;
+}
+
+/* Make Action column a fixed width */
+.table td.action-column {
+    width: 120px; 
+    white-space: nowrap;
+} */

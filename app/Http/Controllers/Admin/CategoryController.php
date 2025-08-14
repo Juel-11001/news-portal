@@ -101,7 +101,8 @@ class CategoryController extends Controller
     {
         $result=[];
         foreach ($languages as $language) {
-             $result[$language->lang] = Category::where('language', $language->lang)->orderBy('id', 'desc')->get();
+             $category = Category::where('language', $language->lang)->orderByDesc('id')->get();
+             $result[$language->lang]=$category;
         }
         return $result;
     }

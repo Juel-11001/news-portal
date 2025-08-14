@@ -9,6 +9,7 @@ class HomeController extends Controller
 {
     public function index()
     {
+        // dd(getLanguage());
         return view('frontend.home');
     }
 }

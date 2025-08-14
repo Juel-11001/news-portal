@@ -23,6 +23,28 @@
     <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
 
     <script type="text/javascript" src="{{asset('frontend/assets/js/index.bundle.js')}}"></script>
+    <script>
+        $(document).ready(function () {
+            $('#site_language').on('change', function(){
+                let languageCode=$(this).val();
+                $.ajax({
+                    url:"{{route('language')}}",
+                    type:"get",
+                    data:{
+                        "language_code":languageCode
+                    },
+                    success:function(data){
+                        if(data.status === 'success'){
+                            window.location.reload();
+                        }
+                    },
+                    error:function(data){
+                        console.log(data);
+                    }
+                })
+            })
+        })
+    </script>
 </body>
 
 </html>

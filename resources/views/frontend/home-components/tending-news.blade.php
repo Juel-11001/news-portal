@@ -3,12 +3,13 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="wrapp__list__article-responsive wrapp__list__article-responsive-carousel">
+                        @foreach ($breakingNews as $news)    
                         <div class="item">
                             <!-- Post Article -->
                             <div class="card__post card__post-list">
                                 <div class="image-sm">
                                     <a href="./blog_details.html">
-                                        <img src="images/news1.jpg" class="img-fluid" alt="">
+                                        <img src="{{asset($news->image)}}" class="img-fluid" alt="">
                                     </a>
                                 </div>
 
@@ -19,12 +20,12 @@
                                             <ul class="list-inline">
                                                 <li class="list-inline-item">
                                                     <span class="text-primary">
-                                                        by david hall
+                                                        {{__('by')}} {{$news->auther->name}}
                                                     </span>
                                                 </li>
                                                 <li class="list-inline-item">
                                                     <span class="text-dark text-capitalize">
-                                                        descember 09, 2016
+                                                        {{date('M d, Y', strtotime($news->created_at))}}
                                                     </span>
                                                 </li>
 
@@ -33,7 +34,7 @@
                                         <div class="card__post__title">
                                             <h6>
                                                 <a href="./blog_details.html">
-                                                    6 Best Tips for Building a Good Shipping Boat
+                                                    {!! limitText($news->title,50) !!}
                                                 </a>
                                             </h6>
                                         </div>
@@ -41,7 +42,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="item">
+                        @endforeach
+                        {{-- <div class="item">
                             <!-- Post Article -->
                             <div class="card__post card__post-list">
                                 <div class="image-sm">
@@ -226,7 +228,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

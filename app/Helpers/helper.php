@@ -5,6 +5,7 @@ use App\Models\Language;
 /** formate tags */
 
 
+/** formate the tags list */
 function formateTags(array $tags)
 {
     $data=implode(',', $tags);
@@ -28,6 +29,13 @@ function getLanguage(){
         }
     }
 }
+/** set session language */
 function setLanguage($code){
     session(['language' => $code]);
+}
+
+/** limit text */
+function limitText(string $text, int $limit=100): String 
+{
+    return \Str::limit($text, $limit, '...');
 }

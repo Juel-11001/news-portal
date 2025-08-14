@@ -102,16 +102,16 @@
 @endsection
 @push('scripts')
   <script>
-    // @foreach ($languages as $lang)  
-    // $("#table-{{$lang->lang}}").dataTable({
-    //   // order": [[0, "desc"]],
-    //  "columnDefs": [
-    //   { width: "150px", targets: 2 },
-    //    { "sortable": false, 
-    //    "targets": [2,3] }
-    //    ]
-    //  });
-    // @endforeach
+    @foreach ($languages as $lang)  
+    $("#table-{{$lang->lang}}").dataTable({
+      // order": [[0, "desc"]],
+     "columnDefs": [
+      { width: "150px", targets: 2 },
+       { "sortable": false, 
+       "targets": [2,3] }
+       ]
+     });
+    @endforeach
     // $(document).ready(function () {
     //   $('.change-status').on('click', function(){
     //     let id=$(this).data('id');
